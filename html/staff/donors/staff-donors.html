@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donor Management | Staff Portal</title>
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../css/style.css">
+    <style>
+        .sidebar { border-right: 1px solid var(--primary-glow); }
+        .sidebar-header h2 { color: #2d3748; }
+        .menu-item.active { border-right-color: #4a5568; background: #f7fafc; color: #2d3748; }
+        .menu-item:hover { background: #f7fafc; color: #2d3748; }
+        .action-btn { width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; border-radius: 6px; cursor: pointer; transition: 0.2s; border: none; }
+        .action-btn:hover { transform: scale(1.1); }
+        .btn-view { background: #ebf8ff; color: #3182ce; }
+        .btn-edit { background: #fdfbf7; color: var(--text-main); border: 1px solid #e2e8f0; }
+        .btn-suspend { background: #fff5f5; color: #c53030; }
+    </style>
+</head>
+<body class="dashboard-body">
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-user-shield" style="color: #4a5568; font-size: 1.5rem; margin-right: 10px;"></i>
+                <h2>Staff Portal</h2>
+                <button class="close-sidebar-btn" id="closeSidebarBtn">&times;</button>
+            </div>
+            <div class="sidebar-menu" style="overflow-y: auto;">
+                <a href="../dashboard/employee-dashboard.html" class="menu-item">
+                    <i class="fa-solid fa-chart-line"></i> Dashboard
+                </a>
+                <a href="../donors/staff-donors.html" class="menu-item active">
+                    <i class="fa-solid fa-users"></i> ผู้บริจาค (Donors)
+                </a>
+                <a href="../patients/staff-patients.html" class="menu-item">
+                    <i class="fa-solid fa-procedures"></i> ผู้ป่วย (Patients)
+                </a>
+                <a href="../inventory/staff-inventory.html" class="menu-item">
+                    <i class="fa-solid fa-boxes-stacked"></i> คลังเลือด (Inventory)
+                </a>
+                <a href="../testing/staff-testing.html" class="menu-item">
+                    <i class="fa-solid fa-microscope"></i> ตรวจเลือด (Testing)
+                </a>
+                <a href="../usage/staff-usage.html" class="menu-item">
+                    <i class="fa-solid fa-truck-medical"></i> การจ่ายเลือด (Usage)
+                </a>
+                <a href="../alerts/staff-alerts.html" class="menu-item">
+                    <i class="fa-solid fa-bell"></i> แจ้งเตือน (Alerts)
+                </a>
+                <a href="../reports/staff-reports.html" class="menu-item">
+                    <i class="fa-solid fa-file-invoice"></i> รายงาน (Reports)
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Wrapper -->
+        <div class="main-wrapper" id="mainContent">
+            <!-- Topbar -->
+            <header class="topbar">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div style="flex: 1;"></div>
+                <div class="user-profile">
+                    <div class="user-info">
+                        <div class="user-name">คุณสิริกร เวชภัณฑ์</div>
+                        <div class="user-id">พยาบาลเจาะเก็บโลหิต (EMP-0152)</div>
+                    </div>
+                    <a href="../../../index.html" class="logout-btn" style="border-color: #e2e8f0; background: #ffffff; color: var(--text-main);">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                    </a>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <main class="dashboard-content">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+                    <h1 class="page-title" style="margin-bottom: 0;">จัดการข้อมูลผู้บริจาค (Donor Management)</h1>
+                    <a href="../donors/staff-add-donor.html" class="btn btn-staff" style="min-width: unset; width: auto; padding: 0.8rem 1.5rem; border-radius: 8px; text-decoration: none;">
+                        <span style="font-size: 1rem; display: flex; align-items: center; gap: 8px; color: var(--text-main);"><i class="fa-solid fa-user-plus" style="color: #4a5568;"></i> เพิ่มผู้บริจาคใหม่</span>
+                    </a>
+                </div>
+
+                <div class="stat-card" style="padding: 2rem;">
+                    <!-- Search Bar Row -->
+                    <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+                        <div style="flex: 1; position: relative;">
+                            <i class="fa-solid fa-search" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted);"></i>
+                            <input type="text" class="form-control" placeholder="ค้นหาชื่อ, รหัสผู้บริจาค (DON-XXXX), หรือเบอร์โทรศัพท์..." style="padding-left: 2.5rem; width: 100%;">
+                        </div>
+                        <select class="form-control" style="width: auto;">
+                            <option value="">ทุกกรุ๊ปเลือด</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="O">O</option>
+                            <option value="AB">AB</option>
+                        </select>
+                        <select class="form-control" style="width: auto;">
+                            <option value="">ทุกสถานะ</option>
+                            <option value="active">ปกติ (พร้อมบริจาค)</option>
+                            <option value="suspended">ระงับสิทธิ์</option>
+                        </select>
+                    </div>
+
+                    <!-- Data Table -->
+                    <div style="overflow-x: auto;">
+                        <table class="data-table" style="min-width: 800px;">
+                            <thead>
+                                <tr>
+                                    <th>Donor ID</th>
+                                    <th>ชื่อ-นามสกุล</th>
+                                    <th>กรุ๊ปเลือด</th>
+                                    <th>บริจาคล่าสุด</th>
+                                    <th>สถานะสิทธิ์</th>
+                                    <th style="text-align: right;">การจัดการ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="font-weight: 500;">DON-12345</td>
+                                    <td>เจตนิพัทธ์ ผู้บริจาค</td>
+                                    <td><span style="font-weight: 700; color: var(--primary);">O+</span></td>
+                                    <td>12 มิ.ย. 2025</td>
+                                    <td><span class="badge badge-success">ปกติ</span></td>
+                                    <td style="text-align: right;">
+                                        <div style="display: flex; gap: 0.5rem; justify-content: flex-end;">
+                                            <button class="action-btn btn-view" title="ดูประวัติการบริจาค"><i class="fa-solid fa-clock-rotate-left"></i></button>
+                                            <button class="action-btn btn-edit" title="แก้ไขข้อมูล"><i class="fa-solid fa-pen"></i></button>
+                                            <button class="action-btn btn-suspend" title="ระงับสิทธิ์ชั่วคราว"><i class="fa-solid fa-ban"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: 500;">DON-99842</td>
+                                    <td>สมชาย รักดี</td>
+                                    <td><span style="font-weight: 700; color: var(--primary);">A-</span></td>
+                                    <td>5 เม.ย. 2025</td>
+                                    <td><span class="badge badge-success">ปกติ</span></td>
+                                    <td style="text-align: right;">
+                                        <div style="display: flex; gap: 0.5rem; justify-content: flex-end;">
+                                            <button class="action-btn btn-view" title="ดูประวัติการบริจาค"><i class="fa-solid fa-clock-rotate-left"></i></button>
+                                            <button class="action-btn btn-edit" title="แก้ไขข้อมูล"><i class="fa-solid fa-pen"></i></button>
+                                            <button class="action-btn btn-suspend" title="ระงับสิทธิ์ชั่วคราว"><i class="fa-solid fa-ban"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: 500;">DON-11002</td>
+                                    <td>วิภาภรณ์ ใจเย็น</td>
+                                    <td><span style="font-weight: 700; color: var(--primary);">B+</span></td>
+                                    <td>10 ส.ค. 2024</td>
+                                    <td><span class="badge badge-danger">ระงับ (พักผ่อนไม่พอ)</span></td>
+                                    <td style="text-align: right;">
+                                        <div style="display: flex; gap: 0.5rem; justify-content: flex-end;">
+                                            <button class="action-btn btn-view" title="ดูประวัติการบริจาค"><i class="fa-solid fa-clock-rotate-left"></i></button>
+                                            <button class="action-btn btn-edit" title="แก้ไขข้อมูล"><i class="fa-solid fa-pen"></i></button>
+                                            <button class="action-btn btn-suspend" title="ปลดระงับสิทธิ์"><i class="fa-solid fa-check"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: 500;">DON-55419</td>
+                                    <td>กรกช แสงสุวรรณ</td>
+                                    <td><span style="font-weight: 700; color: var(--primary);">AB+</span></td>
+                                    <td>-</td>
+                                    <td><span class="badge badge-success">ผู้บริจาคใหม่</span></td>
+                                    <td style="text-align: right;">
+                                        <div style="display: flex; gap: 0.5rem; justify-content: flex-end;">
+                                            <button class="action-btn btn-view" title="ดูประวัติการบริจาค"><i class="fa-solid fa-clock-rotate-left"></i></button>
+                                            <button class="action-btn btn-edit" title="แก้ไขข้อมูล"><i class="fa-solid fa-pen"></i></button>
+                                            <button class="action-btn btn-suspend" title="ระงับสิทธิ์ชั่วคราว"><i class="fa-solid fa-ban"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; color: var(--text-muted); font-size: 0.9rem;">
+                        <span>แสดง 1 ถึง 4 จาก 1,420 รายการ</span>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <button style="padding: 0.4rem 0.8rem; border: 1px solid #e2e8f0; background: #fff; border-radius: 6px; cursor: pointer;">ก่อนหน้า</button>
+                            <button style="padding: 0.4rem 0.8rem; border: 1px solid var(--primary); background: var(--primary); color: white; border-radius: 6px; cursor: pointer;">1</button>
+                            <button style="padding: 0.4rem 0.8rem; border: 1px solid #e2e8f0; background: #fff; border-radius: 6px; cursor: pointer;">2</button>
+                            <button style="padding: 0.4rem 0.8rem; border: 1px solid #e2e8f0; background: #fff; border-radius: 6px; cursor: pointer;">ถัดไป</button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="../../../js/script.js"></script>
+</body>
+</html>

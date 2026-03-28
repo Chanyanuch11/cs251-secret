@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Dashboard | Blood Bank</title>
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../css/style.css">
+    <style>
+        /* Specific tweaks for Staff UI */
+        .sidebar { border-right: 1px solid var(--primary-glow); }
+        .sidebar-header h2 { color: #2d3748; }
+        .menu-item.active { border-right-color: #4a5568; background: #f7fafc; color: #2d3748; }
+        .menu-item:hover { background: #f7fafc; color: #2d3748; }
+    </style>
+</head>
+<body class="dashboard-body">
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-user-shield" style="color: #4a5568; font-size: 1.5rem; margin-right: 10px;"></i>
+                <h2>Staff Portal</h2>
+                <button class="close-sidebar-btn" id="closeSidebarBtn">&times;</button>
+            </div>
+            <div class="sidebar-menu" style="overflow-y: auto;">
+                <a href="../dashboard/employee-dashboard.html" class="menu-item active">
+                    <i class="fa-solid fa-chart-line"></i> Dashboard
+                </a>
+                <a href="../donors/staff-donors.html" class="menu-item">
+                    <i class="fa-solid fa-users"></i> ผู้บริจาค (Donors)
+                </a>
+                <a href="../patients/staff-patients.html" class="menu-item">
+                    <i class="fa-solid fa-procedures"></i> ผู้ป่วย (Patients)
+                </a>
+                <a href="../inventory/staff-inventory.html" class="menu-item">
+                    <i class="fa-solid fa-boxes-stacked"></i> คลังเลือด (Inventory)
+                </a>
+                <a href="../testing/staff-testing.html" class="menu-item">
+                    <i class="fa-solid fa-microscope"></i> ตรวจเลือด (Testing)
+                </a>
+                <a href="../usage/staff-usage.html" class="menu-item">
+                    <i class="fa-solid fa-truck-medical"></i> การจ่ายเลือด (Usage)
+                </a>
+                <a href="../alerts/staff-alerts.html" class="menu-item">
+                    <i class="fa-solid fa-bell"></i> แจ้งเตือน (Alerts)
+                </a>
+                <a href="../reports/staff-reports.html" class="menu-item">
+                    <i class="fa-solid fa-file-invoice"></i> รายงาน (Reports)
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Wrapper -->
+        <div class="main-wrapper" id="mainContent">
+            <!-- Topbar -->
+            <header class="topbar">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div style="flex: 1;"></div>
+                <div class="user-profile">
+                    <div class="user-info">
+                        <div class="user-name">คุณสิริกร เวชภัณฑ์</div>
+                        <div class="user-id">พยาบาลเจาะเก็บโลหิต (EMP-0152)</div>
+                    </div>
+                    <a href="../../../index.html" class="logout-btn" style="border-color: #e2e8f0; background: #ffffff; color: var(--text-main);">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                    </a>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <main class="dashboard-content">
+                <h1 class="page-title">ระบบจัดการคลังเลือด (Overview)</h1>
+
+                <!-- Stat Cards -->
+                <div class="dashboard-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-icon" style="background: #ebf8ff; color: #3182ce;">
+                                <i class="fa-solid fa-users"></i>
+                            </div>
+                            <div>
+                                <div class="stat-title">จำนวนผู้บริจาคทั้งหมด</div>
+                                <div class="stat-value">1,420 <span style="font-size: 0.9rem; color: var(--text-muted); font-weight: normal;">คน</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-icon" style="background: #f0fff4; color: #38a169;">
+                                <i class="fa-solid fa-box-open"></i>
+                            </div>
+                            <div>
+                                <div class="stat-title">ถุงเลือดพร้อมใช้</div>
+                                <div class="stat-value">543 <span style="font-size: 0.9rem; color: var(--text-muted); font-weight: normal;">ยูนิต</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-icon" style="background: #fffaf0; color: #dd6b20;">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div>
+                                <div class="stat-title">ใกล้หมดอายุ (>7 วัน)</div>
+                                <div class="stat-value" style="color: #dd6b20;">12 <span style="font-size: 0.9rem; color: var(--text-muted); font-weight: normal;">ยูนิต</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-icon" style="background: #fdfbf7; color: var(--text-muted); border: 1px solid #e2e8f0;">
+                                <i class="fa-solid fa-truck-fast"></i>
+                            </div>
+                            <div>
+                                <div class="stat-title">การจ่ายเลือดวันนี้</div>
+                                <div class="stat-value">45 <span style="font-size: 0.9rem; color: var(--text-muted); font-weight: normal;">รายการ</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid" style="grid-template-columns: 2fr 1fr;">
+                    <!-- Inventory Table -->
+                    <div class="stat-card" style="padding: 2rem; overflow-x: auto;">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--text-main); display: flex; justify-content: space-between; align-items: center;">
+                            สต๊อกเลือด (Blood Inventory)
+                            <a href="#" style="font-size: 0.9rem; color: #3182ce; text-decoration: none; font-weight: 500;">ดูทั้งหมด <i class="fa-solid fa-chevron-right"></i></a>
+                        </h3>
+                        <table class="data-table" style="min-width: 500px;">
+                            <thead>
+                                <tr>
+                                    <th>กรุ๊ปเลือด</th>
+                                    <th>ประเภท</th>
+                                    <th>จำนวน (ยูนิต)</th>
+                                    <th>สถานะ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span style="font-weight: 700; color: var(--primary);">O</span> Positive</td>
+                                    <td>Whole Blood</td>
+                                    <td>120</td>
+                                    <td><span class="badge badge-success">ปกติ</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="font-weight: 700; color: var(--primary);">O</span> Negative</td>
+                                    <td>Whole Blood</td>
+                                    <td><span style="color: #c53030; font-weight: bold;">5</span></td>
+                                    <td><span class="badge badge-danger">ขาดแคลนด่วน</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="font-weight: 700; color: var(--primary);">A</span> Positive</td>
+                                    <td>Whole Blood</td>
+                                    <td>154</td>
+                                    <td><span class="badge badge-success">ปกติ</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="font-weight: 700; color: var(--primary);">B</span> Positive</td>
+                                    <td>Platelets</td>
+                                    <td><span style="color: #dd6b20; font-weight: bold;">12</span></td>
+                                    <td><span class="badge badge-warning">เฝ้าระวัง</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="font-weight: 700; color: var(--primary);">AB</span> Positive</td>
+                                    <td>Whole Blood</td>
+                                    <td>84</td>
+                                    <td><span class="badge badge-success">ปกติ</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Important Alerts -->
+                    <div class="stat-card" style="padding: 2rem;">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--text-main);"><i class="fa-solid fa-triangle-exclamation" style="color: var(--primary); margin-right: 8px;"></i> แจ้งเตือนสำคัญ</h3>
+                        <div style="display: flex; flex-direction: column; gap: 1rem;">
+                            <!-- Alert 1 -->
+                            <div style="padding: 1.25rem; background: #fff5f5; border-radius: 12px; border-left: 4px solid var(--primary);">
+                                <h4 style="color: var(--primary); margin-bottom: 0.5rem; font-size: 1rem;">เลือดกรุ๊ป O(-) ขาดสต๊อกด่วน</h4>
+                                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">ยอดคงเหลือต่ำกว่าเกณฑ์มาตรฐาน (5 ยูนิต) กรุณาประกาศขอรับบริจาคด่วนฉุกเฉิน</p>
+                                <button style="background: transparent; border: 1px solid var(--primary); color: var(--primary); padding: 5px 10px; border-radius: 6px; font-size: 0.8rem; cursor: pointer; transition: 0.2s;">ส่ง SMS แจ้งเตือนผู้บริจาค</button>
+                            </div>
+
+                            <!-- Alert 2 -->
+                            <div style="padding: 1.25rem; background: #fffff0; border-radius: 12px; border-left: 4px solid #ecc94b;">
+                                <h4 style="color: #b7791f; margin-bottom: 0.5rem; font-size: 1rem;">เลือดใกล้หมดอายุ</h4>
+                                <p style="font-size: 0.9rem; color: var(--text-muted);">มีเกล็ดเลือด (Platelets) กรุ๊ป B จำนวน 12 ยูนิต ที่จะหมดอายุภายใน 3 วัน</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="../../../js/script.js"></script>
+</body>
+</html>

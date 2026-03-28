@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Patient | Staff Portal</title>
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../css/style.css">
+    <style>
+        .sidebar { border-right: 1px solid var(--primary-glow); }
+        .sidebar-header h2 { color: #2d3748; }
+        .menu-item.active { border-right-color: #4a5568; background: #f7fafc; color: #2d3748; }
+        .menu-item:hover { background: #f7fafc; color: #2d3748; }
+    </style>
+</head>
+<body class="dashboard-body">
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-user-shield" style="color: #4a5568; font-size: 1.5rem; margin-right: 10px;"></i>
+                <h2>Staff Portal</h2>
+                <button class="close-sidebar-btn" id="closeSidebarBtn">&times;</button>
+            </div>
+            <div class="sidebar-menu" style="overflow-y: auto;">
+                <a href="../dashboard/employee-dashboard.html" class="menu-item">
+                    <i class="fa-solid fa-chart-line"></i> Dashboard
+                </a>
+                <a href="../donors/staff-donors.html" class="menu-item">
+                    <i class="fa-solid fa-users"></i> ผู้บริจาค (Donors)
+                </a>
+                <a href="../patients/staff-patients.html" class="menu-item active">
+                    <i class="fa-solid fa-procedures"></i> ผู้ป่วย (Patients)
+                </a>
+                <a href="../inventory/staff-inventory.html" class="menu-item">
+                    <i class="fa-solid fa-boxes-stacked"></i> คลังเลือด (Inventory)
+                </a>
+                <a href="../testing/staff-testing.html" class="menu-item">
+                    <i class="fa-solid fa-microscope"></i> ตรวจเลือด (Testing)
+                </a>
+                <a href="../usage/staff-usage.html" class="menu-item">
+                    <i class="fa-solid fa-truck-medical"></i> การจ่ายเลือด (Usage)
+                </a>
+                <a href="../alerts/staff-alerts.html" class="menu-item">
+                    <i class="fa-solid fa-bell"></i> แจ้งเตือน (Alerts)
+                </a>
+                <a href="../reports/staff-reports.html" class="menu-item">
+                    <i class="fa-solid fa-file-invoice"></i> รายงาน (Reports)
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Wrapper -->
+        <div class="main-wrapper" id="mainContent">
+            <!-- Topbar -->
+            <header class="topbar">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div style="flex: 1;"></div>
+                <div class="user-profile">
+                    <div class="user-info">
+                        <div class="user-name">คุณสิริกร เวชภัณฑ์</div>
+                        <div class="user-id">พยาบาลเจาะเก็บโลหิต (EMP-0152)</div>
+                    </div>
+                    <a href="../../../index.html" class="logout-btn" style="border-color: #e2e8f0; background: #ffffff; color: var(--text-main);">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                    </a>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <main class="dashboard-content">
+                <div style="display: flex; align-items: center; margin-bottom: 2rem;">
+                    <a href="../patients/staff-patients.html" style="color: var(--text-muted); font-size: 1.5rem; margin-right: 15px; text-decoration: none; transition: 0.2s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-muted)'"><i class="fa-solid fa-arrow-left"></i></a>
+                    <h1 class="page-title" style="margin-bottom: 0;">ขึ้นทะเบียนผู้ป่วยรับเลือด</h1>
+                </div>
+
+                <div class="stat-card" style="padding: 2.5rem; max-width: 900px;">
+                    <form id="addPatientForm" class="form-container" style="margin-top: 0;">
+                        
+                        <div id="addPatientAlert" class="alert alert-success" style="display: none;">รับเรื่องส่งตัวผู้ป่วยสำเร็จ! รหัสผู้ป่วยลำดับคิวคือ PAT-88156</div>
+
+                        <h3 style="color: var(--primary); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid #e2e8f0;">ข้อมูลประจำตัวผู้ป่วย</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">เลขบัตรประชาชน / เลข Passport</label>
+                                <input type="text" class="form-control" placeholder="ระบุเลขประจำตัวผู้ป่วย" maxlength="13" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">ชื่อ-นามสกุล</label>
+                                <input type="text" class="form-control" placeholder="ชื่อ นามสกุล" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">อายุ</label>
+                                <input type="number" class="form-control" placeholder="ปี" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">เพศ</label>
+                                <select class="form-control" required>
+                                    <option value="">-- เลือกเพศ --</option>
+                                    <option value="Male">ชาย</option>
+                                    <option value="Female">หญิง</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <h3 style="color: var(--primary); margin: 2rem 0 1rem 0; padding-bottom: 0.5rem; border-bottom: 1px solid #e2e8f0;">ข้อมูลการรักษา (ในโรงพยาบาล)</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">เลขประจำตัวผู้ป่วย (HN - Hospital Number)</label>
+                                <input type="text" class="form-control" placeholder="ระบุเลข HN" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">วอร์ด / แผนก / หมายเลขเตียง</label>
+                                <input type="text" class="form-control" placeholder="เช่น ICU เตียง 4, ศัลยกรรมกระดูก">
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label class="form-label">แพทย์ผู้รับผิดชอบ (Attending Physician)</label>
+                                <input type="text" class="form-control" placeholder="นพ./พญ. ......" required>
+                            </div>
+                        </div>
+
+                        <h3 style="color: var(--primary); margin: 2rem 0 1rem 0; padding-bottom: 0.5rem; border-bottom: 1px solid #e2e8f0;">ข้อมูลการร้องขอเลือด (Blood Request)</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">กรุ๊ปเลือดที่ต้องการ (Blood Group)</label>
+                                <select class="form-control" required>
+                                    <option value="">-- ระบุ --</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="O">O</option>
+                                    <option value="AB">AB</option>
+                                    <option value="unknown">ไม่ทราบ/รอผล Crossmatch</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">ชนิดของเลือด (Blood Product)</label>
+                                <select class="form-control" required>
+                                    <option value="">-- ระบุ --</option>
+                                    <option value="WB">Whole Blood (WB)</option>
+                                    <option value="PRC">Packed Red Cells (PRC)</option>
+                                    <option value="PLT">Platelets (PLT)</option>
+                                    <option value="FFP">Fresh Frozen Plasma (FFP)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">จำนวนที่ต้องการระดม (Units)</label>
+                                <input type="number" class="form-control" placeholder="ระบุจำนวน (ยูนิต)" min="1" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">ระดับความเร่งด่วน</label>
+                                <select class="form-control" style="font-weight: 500;" required>
+                                    <option value="">-- เลือกระดับ --</option>
+                                    <option value="low" style="color: green;">ทั่วไป (จองเลือดล่วงหน้า)</option>
+                                    <option value="medium" style="color: orange;">เฝ้าระวัง (สามารถรอได้ 24 ชั่วโมง)</option>
+                                    <option value="high" style="color: red; font-weight: bold;">ฉุกเฉิน (ต้องการเลือดด่วนวงกว้าง)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group full-width" style="margin-top: 1.5rem;">
+                                <button type="submit" class="btn btn-staff" style="width: 100%; max-width: 100%;">
+                                    <div class="btn-content" style="flex-direction: row; justify-content: center; gap: 10px;">
+                                        <i class="fa-solid fa-save" style="font-size: 1.25rem;"></i>
+                                        <span style="font-size: 1.15rem; color: var(--text-main);">บันทึกการส่งตัวผู้ป่วยใหม่</span>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="../../../js/script.js"></script>
+    <script>
+        document.getElementById('addPatientForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const alertBox = document.getElementById('addPatientAlert');
+            alertBox.style.display = 'block';
+            
+            setTimeout(() => {
+                this.reset();
+            }, 500);
+            
+            setTimeout(() => {
+                alertBox.style.display = 'none';
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

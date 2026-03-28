@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Alerts | Staff Portal</title>
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../css/style.css">
+    <style>
+        .sidebar { border-right: 1px solid var(--primary-glow); }
+        .sidebar-header h2 { color: #2d3748; }
+        .menu-item.active { border-right-color: #4a5568; background: #f7fafc; color: #2d3748; }
+        .menu-item:hover { background: #f7fafc; color: #2d3748; }
+    </style>
+</head>
+<body class="dashboard-body">
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-user-shield" style="color: #4a5568; font-size: 1.5rem; margin-right: 10px;"></i>
+                <h2>Staff Portal</h2>
+                <button class="close-sidebar-btn" id="closeSidebarBtn">&times;</button>
+            </div>
+            <div class="sidebar-menu" style="overflow-y: auto;">
+                <a href="../dashboard/employee-dashboard.html" class="menu-item">
+                    <i class="fa-solid fa-chart-line"></i> Dashboard
+                </a>
+                <a href="../donors/staff-donors.html" class="menu-item">
+                    <i class="fa-solid fa-users"></i> ผู้บริจาค (Donors)
+                </a>
+                <a href="../patients/staff-patients.html" class="menu-item">
+                    <i class="fa-solid fa-procedures"></i> ผู้ป่วย (Patients)
+                </a>
+                <a href="../inventory/staff-inventory.html" class="menu-item">
+                    <i class="fa-solid fa-boxes-stacked"></i> คลังเลือด (Inventory)
+                </a>
+                <a href="../testing/staff-testing.html" class="menu-item">
+                    <i class="fa-solid fa-microscope"></i> ตรวจเลือด (Testing)
+                </a>
+                <a href="../usage/staff-usage.html" class="menu-item">
+                    <i class="fa-solid fa-truck-medical"></i> การจ่ายเลือด (Usage)
+                </a>
+                <a href="../alerts/staff-alerts.html" class="menu-item active">
+                    <i class="fa-solid fa-bell"></i> แจ้งเตือน (Alerts)
+                </a>
+                <a href="../reports/staff-reports.html" class="menu-item">
+                    <i class="fa-solid fa-file-invoice"></i> รายงาน (Reports)
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Wrapper -->
+        <div class="main-wrapper" id="mainContent">
+            <!-- Topbar -->
+            <header class="topbar">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div style="flex: 1;"></div>
+                <div class="user-profile">
+                    <div class="user-info">
+                        <div class="user-name">คุณสิริกร เวชภัณฑ์</div>
+                        <div class="user-id">พยาบาลเจาะเก็บโลหิต (EMP-0152)</div>
+                    </div>
+                    <a href="../../../index.html" class="logout-btn" style="border-color: #e2e8f0; background: #ffffff; color: var(--text-main);">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                    </a>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <main class="dashboard-content">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem;">
+                    <h1 class="page-title" style="margin-bottom: 0;">แจ้งเตือนส่วนกลาง (System Alerts)</h1>
+                </div>
+
+                <div class="dashboard-grid" style="grid-template-columns: 1fr;">
+                    <div class="stat-card" style="padding: 2.5rem; background: transparent; box-shadow: none;">
+                        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                            
+                            <!-- System shortage alert -->
+                            <div style="padding: 1.5rem; background: #fff5f5; border-radius: 12px; border-left: 5px solid #c53030; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
+                                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+                                    <div>
+                                        <h3 style="color: #c53030; margin-bottom: 0.5rem; font-size: 1.25rem;"><i class="fa-solid fa-triangle-exclamation"></i> ขั้นวิกฤต: เลือด PRC กรุ๊ป O(-) ขาดสต๊อกด่วน</h3>
+                                        <p style="font-size: 1.05rem; color: var(--text-main); margin-bottom: 15px;">ยอดคงเหลือปัจจุบัน <span style="font-weight: bold; color: #c53030;">(0 ยูนิต)</span> ต่ำกว่าเกณฑ์มาตรฐานขั้นต่ำ (5 ยูนิต) เสี่ยงต่อคนไข้ฉุกเฉิน</p>
+                                    </div>
+                                    <span class="badge badge-danger" style="white-space: nowrap;">เมื่อ 1 ชม. ที่แล้ว</span>
+                                </div>
+                                <button class="btn btn-staff" style="background: transparent; color: #c53030; border-color: #c53030; min-width: unset; padding: 0.5rem 1rem; border-radius: 6px;">กระจายข้อความขอรับบริจาค <i class="fa-solid fa-tower-broadcast"></i></button>
+                            </div>
+                            
+                            <!-- Deferral alert -->
+                            <div style="padding: 1.5rem; background: #fff5f5; border-radius: 12px; border-left: 5px solid #e53e3e; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
+                                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+                                    <div>
+                                        <h3 style="color: #e53e3e; margin-bottom: 0.5rem; font-size: 1.25rem;"><i class="fa-solid fa-ban"></i> ระบบระงับสิทธิ์อัตโนมัติ (Deferral System)</h3>
+                                        <p style="font-size: 1.05rem; color: var(--text-main); margin-bottom: 5px;">พบปัญหาจากผู้บริจาค <strong>คุณสมโชค ดีเสมอ (DON-14220)</strong> ผลตรวจ Anti-HCV ปรากฏค่าเป็น <strong style="color: #c53030;">Reactive (+)</strong></p>
+                                        <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 15px;">การบริจาค (DONATION-33100) ถูกยกเลิกและถุงเลือดลงคิวรอทำลายแล้ว บันทึกรหัส DeferralID: DEF-2026-901</p>
+                                    </div>
+                                    <span class="badge badge-danger" style="white-space: nowrap;">15 มิ.ย. 2025</span>
+                                </div>
+                                <a href="../donors/staff-donors.html" class="btn btn-staff" style="background: #e53e3e; color: white; border-color: #e53e3e; min-width: unset; padding: 0.5rem 1rem; text-decoration: none; border-radius: 6px;">ดูประวัติผู้บริจาคระงับสิทธิ์</a>
+                            </div>
+                            
+                            <!-- Expiry Alert -->
+                            <div style="padding: 1.5rem; background: #fffff0; border-radius: 12px; border-left: 5px solid #d69e2e; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
+                                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+                                    <div>
+                                        <h3 style="color: #b7791f; margin-bottom: 0.5rem; font-size: 1.25rem;"><i class="fa-solid fa-clock"></i> แจ้งเตือน: ถุงเลือดใกล้หมดอายุภายใน 3 วัน</h3>
+                                        <p style="font-size: 1.05rem; color: var(--text-main); margin-bottom: 15px;">เกล็ดเลือด Platelets (PLT) ถุงรหัส <strong>BAG-B23049</strong> จะหมดอายุในวันที่ 21 มิ.ย. 2025</p>
+                                    </div>
+                                    <span class="badge badge-warning" style="white-space: nowrap;">เช้านี้</span>
+                                </div>
+                                <a href="../inventory/staff-bag-detail.html" class="btn btn-staff" style="background: transparent; color: #b7791f; border-color: #d69e2e; min-width: unset; padding: 0.5rem 1rem; text-decoration: none; border-radius: 6px;">ไปที่หน้ารายละเอียดถุงเลือด <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                            
+                            <!-- Normal Notification -->
+                            <div style="padding: 1.5rem; background: #ebf8ff; border-radius: 12px; border-left: 5px solid #3182ce; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
+                                <div style="display: flex; justify-content: space-between; align-items: start;">
+                                    <div>
+                                        <h3 style="color: #2b6cb0; margin-bottom: 0.5rem; font-size: 1.25rem;"><i class="fa-solid fa-truck-field-un"></i> รายงานหน่วยรับบริจาคเคลื่อนที่ (Mobile Unit)</h3>
+                                        <p style="font-size: 1.05rem; color: var(--text-main); margin-bottom: 0;">หน่วยรับบริจาคเคลื่อนที่นำส่งเลือดจำนวน 14 ยูนิต สำเร็จแล้วเมื่อสักครู่นี้ สถานะทั้งหมดถูกเพิ่มเข้าสู่ Inventory แบบรอตรวจสอบ (Testing Phase) เรียบร้อย</p>
+                                    </div>
+                                    <span class="badge badge-success" style="white-space: nowrap;">เช้านี้</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="../../../js/script.js"></script>
+</body>
+</html>

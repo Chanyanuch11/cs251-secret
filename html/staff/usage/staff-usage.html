@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Usage & Matching | Staff Portal</title>
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../css/style.css">
+    <style>
+        .sidebar { border-right: 1px solid var(--primary-glow); }
+        .sidebar-header h2 { color: #2d3748; }
+        .menu-item.active { border-right-color: #4a5568; background: #f7fafc; color: #2d3748; }
+        .menu-item:hover { background: #f7fafc; color: #2d3748; }
+        
+        .matching-box { background: #fff5f5; border: 1px solid #fed7d7; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; }
+    </style>
+</head>
+<body class="dashboard-body">
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-user-shield" style="color: #4a5568; font-size: 1.5rem; margin-right: 10px;"></i>
+                <h2>Staff Portal</h2>
+                <button class="close-sidebar-btn" id="closeSidebarBtn">&times;</button>
+            </div>
+            <div class="sidebar-menu" style="overflow-y: auto;">
+                <a href="../dashboard/employee-dashboard.html" class="menu-item">
+                    <i class="fa-solid fa-chart-line"></i> Dashboard
+                </a>
+                <a href="../donors/staff-donors.html" class="menu-item">
+                    <i class="fa-solid fa-users"></i> ผู้บริจาค (Donors)
+                </a>
+                <a href="../patients/staff-patients.html" class="menu-item">
+                    <i class="fa-solid fa-procedures"></i> ผู้ป่วย (Patients)
+                </a>
+                <a href="../inventory/staff-inventory.html" class="menu-item">
+                    <i class="fa-solid fa-boxes-stacked"></i> คลังเลือด (Inventory)
+                </a>
+                <a href="../testing/staff-testing.html" class="menu-item">
+                    <i class="fa-solid fa-microscope"></i> ตรวจเลือด (Testing)
+                </a>
+                <a href="../usage/staff-usage.html" class="menu-item active">
+                    <i class="fa-solid fa-truck-medical"></i> การจ่ายเลือด (Usage)
+                </a>
+                <a href="../alerts/staff-alerts.html" class="menu-item">
+                    <i class="fa-solid fa-bell"></i> แจ้งเตือน (Alerts)
+                </a>
+                <a href="../reports/staff-reports.html" class="menu-item">
+                    <i class="fa-solid fa-file-invoice"></i> รายงาน (Reports)
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Wrapper -->
+        <div class="main-wrapper" id="mainContent">
+            <!-- Topbar -->
+            <header class="topbar">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div style="flex: 1;"></div>
+                <div class="user-profile">
+                    <div class="user-info">
+                        <div class="user-name">คุณสิริกร เวชภัณฑ์</div>
+                        <div class="user-id">พยาบาลเจาะเก็บโลหิต (EMP-0152)</div>
+                    </div>
+                    <a href="../../../index.html" class="logout-btn" style="border-color: #e2e8f0; background: #ffffff; color: var(--text-main);">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                    </a>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <main class="dashboard-content">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem;">
+                    <h1 class="page-title" style="margin-bottom: 0;">ระบบเบิกจ่ายเลือด (Blood Usage & Cross-Matching)</h1>
+                </div>
+                
+                <div class="dashboard-grid" style="grid-template-columns: 1fr 1fr; align-items: start;">
+                    <div class="stat-card" style="padding: 2.5rem;">
+                        <h3 style="color: var(--primary); margin-bottom: 1.5rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.5rem;"><i class="fa-solid fa-hospital-user"></i> 1. ดึงข้อมูลผู้รับเลือด (Patient Record)</h3>
+                        
+                        <div style="margin-bottom: 2rem;">
+                            <label style="display: block; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 8px;">สแกน/กรอก เลขประจำตัวผู้ป่วย (HN) หรือ หมายเลขเตียง / วอร์ด</label>
+                            <div style="display: flex; gap: 1rem;">
+                                <input type="text" class="form-control" value="PAT-88124" style="flex: 1;">
+                                <button class="btn btn-staff" style="min-width: unset; padding: 0.8rem 1.5rem;"><i class="fa-solid fa-search"></i> ค้นหา</button>
+                            </div>
+                        </div>
+                        
+                        <div class="matching-box">
+                            <h4 style="color: #c53030; display: flex; align-items: center; gap: 8px; margin-bottom: 1rem; font-size: 1.1rem;"><span class="badge badge-danger" style="animation: pulse 2s infinite;"><i class="fa-solid fa-triangle-exclamation"></i> เคสด่วน (รอรับเลือด)</span></h4>
+                            
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; padding-bottom: 0.5rem; border-bottom: 1px dashed #fed7d7;">
+                                <span style="color: var(--text-muted);">ชื่อผู้ป่วย:</span>
+                                <strong style="color: var(--text-main);">กิตติพงษ์ หวังดี</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; padding-bottom: 0.5rem; border-bottom: 1px dashed #fed7d7;">
+                                <span style="color: var(--text-muted);">เลขผู้ป่วย HN:</span>
+                                <strong style="color: var(--text-main);">HN-99801239</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; padding-bottom: 0.5rem; border-bottom: 1px dashed #fed7d7;">
+                                <span style="color: var(--text-muted);">วอร์ด / เตียง / สถานที่รักษา:</span>
+                                <strong style="color: var(--text-main);">ICU (เตียง 04)</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span style="color: var(--text-muted);">แพทย์ผู้สั่งเบิก:</span>
+                                <strong style="color: var(--text-main);">นพ.ธนวัฒน์ สุขใจ (EMP-0211)</strong>
+                            </div>
+                            <hr style="border: none; border-top: 1px solid #fc8181; margin: 1.5rem 0;">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="color: var(--text-muted); font-size: 1.1rem;">ความต้องการเลือด:</span>
+                                <div style="text-align: right; background: white; padding: 0.5rem 1rem; border-radius: 8px;">
+                                    <strong style="font-size: 1.75rem; color: var(--primary); display: block;">O+ (PRC)</strong>
+                                    <div style="color: #c53030; font-weight: bold; margin-top: 5px;">จำนวนสุทธิ 2 Units</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card" style="padding: 2.5rem; background: #fdfbf7;">
+                        <h3 style="color: #d69e2e; margin-bottom: 1.5rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.5rem;"><i class="fa-solid fa-link"></i> 2. บันทึกตัดจ่าย ถุงเลือด (Issue Blood Bags)</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">ระบบจะตรวจสอบการเข้ากันได้ (Cross-Matching) ระหว่างการสแกน หากไม่ได้มาตรฐานระบบจะปฏิเสธการสแกนถุงทันที</p>
+                        
+                        <form onsubmit="event.preventDefault(); document.getElementById('usageAlert').style.display='block'; window.scrollTo(0,0);">
+                            <div class="form-group" style="margin-bottom: 1.5rem;">
+                                <label class="form-label">สแกน/กรอก รหัสถุงเลือด (BagID ลำดับที่ 1)</label>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <input type="text" class="form-control" value="BAG-A23001" style="flex: 1; border-color: #38a169; background: #f0fff4; font-weight: bold; color: #276749;">
+                                    <button type="button" class="btn btn-staff" style="min-width: unset; padding: 0.8rem; background: #f0fff4; border-color: #38a169; color: #38a169;"><i class="fa-solid fa-barcode"></i></button>
+                                </div>
+                                <small style="color: #38a169; display: flex; align-items: center; gap: 5px; margin-top: 5px; font-weight: 500;"><i class="fa-solid fa-circle-check"></i> เลือดกรุ๊ป O+ ตรงกันชนิด PRC (Matched)</small>
+                            </div>
+
+                            <div class="form-group" style="margin-bottom: 2.5rem;">
+                                <label class="form-label">สแกน/กรอก รหัสถุงเลือด (BagID ลำดับที่ 2)</label>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <input type="text" class="form-control" placeholder="รอการสแกนบาร์โค้ดจากถุง..." style="flex: 1;">
+                                    <button type="button" class="btn btn-staff" style="min-width: unset; padding: 0.8rem; background: white; border-color: #e2e8f0;"><i class="fa-solid fa-barcode"></i></button>
+                                </div>
+                            </div>
+                            
+                            <div id="usageAlert" class="alert alert-success" style="display: none; border-radius: 8px; font-size: 0.95rem; margin-bottom: 1.5rem;">
+                                  ทำรายการจ่ายเลือดสำเร็จ! รหัสทำรายการล่าสุด: <strong>USAGE-202603-014</strong> ข้อความอัปเดตถูกส่งไปที่วอร์ดเรียบร้อยแล้ว และสถานะถุงเลือด 2 ถุงถูกปรับเป็น "จ่ายออกแล้ว (2)"
+                            </div>
+
+                            <button type="submit" class="btn btn-staff" style="width: 100%; max-width: 100%; justify-content: center; padding: 1.25rem; background: var(--primary); border-color: var(--primary);">
+                                <div class="btn-content" style="flex-direction: row; justify-content: center; gap: 10px;">
+                                    <i class="fa-solid fa-share-nodes" style="font-size: 1.25rem;"></i>
+                                    <span style="font-size: 1.15rem; color: white;">ยืนยันการจ่ายเลือด (Confirm Issue & Record Usage)</span>
+                                </div>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="../../../js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports & Stats | Staff Portal</title>
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../css/style.css">
+    <style>
+        .sidebar { border-right: 1px solid var(--primary-glow); }
+        .sidebar-header h2 { color: #2d3748; }
+        .menu-item.active { border-right-color: #4a5568; background: #f7fafc; color: #2d3748; }
+        .menu-item:hover { background: #f7fafc; color: #2d3748; }
+    </style>
+</head>
+<body class="dashboard-body">
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-user-shield" style="color: #4a5568; font-size: 1.5rem; margin-right: 10px;"></i>
+                <h2>Staff Portal</h2>
+                <button class="close-sidebar-btn" id="closeSidebarBtn">&times;</button>
+            </div>
+            <div class="sidebar-menu" style="overflow-y: auto;">
+                <a href="../dashboard/employee-dashboard.html" class="menu-item">
+                    <i class="fa-solid fa-chart-line"></i> Dashboard
+                </a>
+                <a href="../donors/staff-donors.html" class="menu-item">
+                    <i class="fa-solid fa-users"></i> ผู้บริจาค (Donors)
+                </a>
+                <a href="../patients/staff-patients.html" class="menu-item">
+                    <i class="fa-solid fa-procedures"></i> ผู้ป่วย (Patients)
+                </a>
+                <a href="../inventory/staff-inventory.html" class="menu-item">
+                    <i class="fa-solid fa-boxes-stacked"></i> คลังเลือด (Inventory)
+                </a>
+                <a href="../testing/staff-testing.html" class="menu-item">
+                    <i class="fa-solid fa-microscope"></i> ตรวจเลือด (Testing)
+                </a>
+                <a href="../usage/staff-usage.html" class="menu-item">
+                    <i class="fa-solid fa-truck-medical"></i> การจ่ายเลือด (Usage)
+                </a>
+                <a href="../alerts/staff-alerts.html" class="menu-item">
+                    <i class="fa-solid fa-bell"></i> แจ้งเตือน (Alerts)
+                </a>
+                <a href="../reports/staff-reports.html" class="menu-item active">
+                    <i class="fa-solid fa-file-invoice"></i> รายงาน (Reports)
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Wrapper -->
+        <div class="main-wrapper" id="mainContent">
+            <!-- Topbar -->
+            <header class="topbar">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div style="flex: 1;"></div>
+                <div class="user-profile">
+                    <div class="user-info">
+                        <div class="user-name">คุณสิริกร เวชภัณฑ์</div>
+                        <div class="user-id">พยาบาลเจาะเก็บโลหิต (EMP-0152)</div>
+                    </div>
+                    <a href="../../../index.html" class="logout-btn" style="border-color: #e2e8f0; background: #ffffff; color: var(--text-main);">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                    </a>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <main class="dashboard-content">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem;">
+                    <h1 class="page-title" style="margin-bottom: 0;">รายงานสรุปผลการดำเนินงาน (Monthly Reports)</h1>
+                </div>
+
+                <!-- Generate Form -->
+                <div class="stat-card" style="padding: 2.5rem; margin-bottom: 2.5rem;">
+                    <form style="display: flex; gap: 1rem; align-items: flex-end; flex-wrap: wrap;">
+                        <div style="flex: 1; min-width: 250px;">
+                            <label style="display: block; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 8px;">ประเภทรายงาน</label>
+                            <select class="form-control">
+                                <option>สรุปสถิติประจำเดือน (Monthly Summary)</option>
+                                <option>รายงานอัตราการติดเชื้อ (Infection Report)</option>
+                                <option>รายงานเลือดสูญเสีย (Disposal Report)</option>
+                            </select>
+                        </div>
+                        <div style="flex: 1; min-width: 150px;">
+                            <label style="display: block; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 8px;">เดือน</label>
+                            <select class="form-control">
+                                <option>มิถุนายน</option>
+                                <option>พฤษภาคม</option>
+                                <option>เมษายน</option>
+                            </select>
+                        </div>
+                        <div style="flex: 1; min-width: 150px;">
+                            <label style="display: block; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 8px;">ปี</label>
+                            <select class="form-control">
+                                <option>2025</option>
+                                <option>2024</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn btn-staff" style="height: 48px; border-radius: 8px; min-width: unset; padding: 0 1.5rem;"><i class="fa-solid fa-file-invoice"></i> ดึงรายงาน</button>
+                    </form>
+                </div>
+
+                <!-- Stats Grid -->
+                <h3 style="color: var(--text-main); margin-bottom: 1.5rem; font-size: 1.5rem;">แดชบอร์ดสรุปผล: <span style="color: var(--primary);">มิถุนายน 2025</span></h3>
+                <div class="dashboard-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-bottom: 2.5rem;">
+                    <div class="stat-card" style="padding: 2rem; text-align: center;">
+                        <div style="width: 70px; height: 70px; background: #e6fffa; color: #319795; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin: 0 auto 1.5rem auto;">
+                            <i class="fa-solid fa-hand-holding-droplet"></i>
+                        </div>
+                        <div style="font-size: 3rem; font-weight: 700; color: #2d3748; line-height: 1; margin-bottom: 8px;">420</div>
+                        <div style="color: var(--text-muted); font-size: 1.1rem;">ยอดรับเข้าคลังทั้งหมด (ยูนิต)</div>
+                    </div>
+                    <div class="stat-card" style="padding: 2rem; text-align: center;">
+                        <div style="width: 70px; height: 70px; background: #ebf8ff; color: #3182ce; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin: 0 auto 1.5rem auto;">
+                            <i class="fa-solid fa-truck-medical"></i>
+                        </div>
+                        <div style="font-size: 3rem; font-weight: 700; color: #3182ce; line-height: 1; margin-bottom: 8px;">384</div>
+                        <div style="color: var(--text-muted); font-size: 1.1rem;">ยอดการสั่งจ่ายเบิกใช้เลือด (ยูนิต)</div>
+                    </div>
+                    <div class="stat-card" style="padding: 2rem; text-align: center;">
+                        <div style="width: 70px; height: 70px; background: #fff5f5; color: #e53e3e; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin: 0 auto 1.5rem auto;">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </div>
+                        <div style="font-size: 3rem; font-weight: 700; color: #e53e3e; line-height: 1; margin-bottom: 8px;">12</div>
+                        <div style="color: var(--text-muted); font-size: 1.1rem;">ปริมาณการสูญเสีย / ทำลาย (ยูนิต)</div>
+                    </div>
+                </div>
+
+                <!-- Bottom Tables -->
+                <div class="dashboard-grid" style="grid-template-columns: 1fr 1fr; align-items: start;">
+                    <div class="stat-card" style="padding: 2rem; overflow-x: auto;">
+                        <h4 style="margin-bottom: 1.5rem; color: var(--text-main); font-size: 1.25rem;"><i class="fa-solid fa-chart-pie" style="color: var(--primary);"></i> สัดส่วนเลือดสูญเสีย (Disposal Reasons)</h4>
+                        <table class="data-table">
+                            <thead><tr><th>สาเหตุ</th><th>จำนวน (ยูนิต)</th><th>ร้อยละ (%)</th></tr></thead>
+                            <tbody>
+                                <tr><td><span class="badge badge-warning">หมดอายุ (Expired)</span></td><td style="font-weight: bold; color: #2d3748;">8</td><td>66.7%</td></tr>
+                                <tr><td><span class="badge badge-danger">พบเชื้อ (Reactive)</span></td><td style="font-weight: bold; color: #2d3748;">3</td><td>25.0%</td></tr>
+                                <tr><td><span class="badge badge-warning">ถุงชำรุด (Broken)</span></td><td style="font-weight: bold; color: #2d3748;">1</td><td>8.3%</td></tr>
+                                <tr style="background: #f7fafc;"><td style="font-weight: bold;">รวมยอดสูญเสีย (Total)</td><td style="font-weight: bold; color: #e53e3e;">12</td><td style="font-weight: bold;">100%</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="stat-card" style="padding: 2rem; overflow-x: auto;">
+                        <h4 style="margin-bottom: 1.5rem; color: var(--text-main); font-size: 1.25rem;"><i class="fa-solid fa-hospital-user" style="color: var(--primary);"></i> ยอดการใช้เลือดแยกตามแผนก (Usage)</h4>
+                        <table class="data-table">
+                            <thead><tr><th>วอร์ด / แผนกในการรักษา</th><th>จำนวนทั้งหมด (ยูนิต)</th></tr></thead>
+                            <tbody>
+                                <tr><td>แผนกศัลยกรรม (Surgery)</td><td style="font-weight: bold; color: #3182ce;">125</td></tr>
+                                <tr><td>แผนกผู้ป่วยวิกฤต (ICU)</td><td style="font-weight: bold; color: #3182ce;">96</td></tr>
+                                <tr><td>อายุรกรรมชาย/หญิง</td><td style="font-weight: bold; color: #3182ce;">64</td></tr>
+                                <tr><td>สูติ-นรีเวชกรรม</td><td style="font-weight: bold; color: #3182ce;">40</td></tr>
+                                <tr><td>การเบิกจ่ายอื่นๆ</td><td style="font-weight: bold; color: #3182ce;">59</td></tr>
+                                <tr style="background: #ebf8ff;"><td style="font-weight: bold;">รวมยอดจ่ายประจำเดือน (Total)</td><td style="font-weight: bold; color: #2b6cb0;">384</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="../../../js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Testing | Staff Portal</title>
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../css/style.css">
+    <style>
+        .sidebar { border-right: 1px solid var(--primary-glow); }
+        .sidebar-header h2 { color: #2d3748; }
+        .menu-item.active { border-right-color: #4a5568; background: #f7fafc; color: #2d3748; }
+        .menu-item:hover { background: #f7fafc; color: #2d3748; }
+    </style>
+</head>
+<body class="dashboard-body">
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-user-shield" style="color: #4a5568; font-size: 1.5rem; margin-right: 10px;"></i>
+                <h2>Staff Portal</h2>
+                <button class="close-sidebar-btn" id="closeSidebarBtn">&times;</button>
+            </div>
+            <div class="sidebar-menu" style="overflow-y: auto;">
+                <a href="../dashboard/employee-dashboard.html" class="menu-item">
+                    <i class="fa-solid fa-chart-line"></i> Dashboard
+                </a>
+                <a href="../donors/staff-donors.html" class="menu-item">
+                    <i class="fa-solid fa-users"></i> ผู้บริจาค (Donors)
+                </a>
+                <a href="../patients/staff-patients.html" class="menu-item">
+                    <i class="fa-solid fa-procedures"></i> ผู้ป่วย (Patients)
+                </a>
+                <a href="../inventory/staff-inventory.html" class="menu-item">
+                    <i class="fa-solid fa-boxes-stacked"></i> คลังเลือด (Inventory)
+                </a>
+                <a href="../testing/staff-testing.html" class="menu-item active">
+                    <i class="fa-solid fa-microscope"></i> ตรวจเลือด (Testing)
+                </a>
+                <a href="../usage/staff-usage.html" class="menu-item">
+                    <i class="fa-solid fa-truck-medical"></i> การจ่ายเลือด (Usage)
+                </a>
+                <a href="../alerts/staff-alerts.html" class="menu-item">
+                    <i class="fa-solid fa-bell"></i> แจ้งเตือน (Alerts)
+                </a>
+                <a href="../reports/staff-reports.html" class="menu-item">
+                    <i class="fa-solid fa-file-invoice"></i> รายงาน (Reports)
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Wrapper -->
+        <div class="main-wrapper" id="mainContent">
+            <!-- Topbar -->
+            <header class="topbar">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div style="flex: 1;"></div>
+                <div class="user-profile">
+                    <div class="user-info">
+                        <div class="user-name">คุณสิริกร เวชภัณฑ์</div>
+                        <div class="user-id">พยาบาลเจาะเก็บโลหิต (EMP-0152)</div>
+                    </div>
+                    <a href="../../../index.html" class="logout-btn" style="border-color: #e2e8f0; background: #ffffff; color: var(--text-main);">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                    </a>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <main class="dashboard-content">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem;">
+                    <h1 class="page-title" style="margin-bottom: 0;">บันทึกผลทางห้องปฏิบัติการ (Blood Testing)</h1>
+                </div>
+                
+                <div class="stat-card" style="padding: 2.5rem; max-width: 900px;">
+                    <div style="margin-bottom: 2rem;">
+                        <label style="display: block; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 8px;">ค้นหาการบริจาค หรือ รหัสถุงเลือด (BagID/DonationID)</label>
+                        <div style="display: flex; gap: 1rem;">
+                            <input type="text" class="form-control" placeholder="ระบุรหัส (เช่น DONATION-55102, BAG-W88192)" style="flex: 1;" value="DONATION-88192">
+                            <button class="btn btn-staff" style="min-width: unset; padding: 0.8rem 1.5rem;"><i class="fa-solid fa-search"></i> ค้นหาข้อมูล</button>
+                        </div>
+                    </div>
+                    
+                    <div style="background: #f7fafc; padding: 1.5rem; border-radius: 8px; border: 1px solid #e2e8f0; margin-bottom: 2rem; display: flex; flex-wrap: wrap; gap: 2rem;">
+                        <div><p style="margin: 0; color: var(--text-muted); font-size: 0.9rem;">ผู้บริจาคอ้างอิง</p><strong style="color: var(--text-main); font-size: 1.1rem;">คุณสมชาย รักดี (DON-99842)</strong></div>
+                        <div><p style="margin: 0; color: var(--text-muted); font-size: 0.9rem;">วันที่เจาะเก็บเลือด</p><strong style="color: var(--text-main); font-size: 1.1rem;">26 มี.ค. 2026</strong></div>
+                        <div><p style="margin: 0; color: var(--text-muted); font-size: 0.9rem;">ประเภทกระบวนการ</p><strong style="color: var(--text-main); font-size: 1.1rem;">Whole Blood (WB)</strong></div>
+                        <div><p style="margin: 0; color: var(--text-muted); font-size: 0.9rem;">หมู่เลือดเบื้องต้น</p><strong style="color: var(--primary); font-size: 1.1rem;">A (Positive)</strong></div>
+                    </div>
+
+                    <form onsubmit="event.preventDefault(); document.getElementById('testAlert').style.display='block'; window.scrollTo(0,0);">
+                        <div id="testAlert" class="alert alert-success" style="display: none; border-radius: 8px;">
+                                บันทึกผลแล็บสำเร็จ! ระบบทำการตรวจสอบเงื่อนไขและแปลงสถานะถุงเลือดรหัส <strong>BAG-W88192</strong> เป็น "พร้อมใช้งาน (0)" ในคลังเรียบร้อยแล้ว (อ้างอิงรหัสชุดทดสอบ: TEST-12503)
+                        </div>
+
+                        <h3 style="color: var(--primary); margin-bottom: 1rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.5rem;">ส่วนที่ 1: ผลทดสอบหมู่เลือดและความเข้ากันได้ (Confirmatory Test)</h3>
+                        <div class="form-grid" style="margin-bottom: 2.5rem;">
+                            <div class="form-group">
+                                <label class="form-label">หมู่ระบบ ABO (ABO Blood Group)</label>
+                                <select class="form-control" required>
+                                    <option value="">-- ระบุผลการทดสอบ --</option>
+                                    <option value="A" selected>A</option>
+                                    <option value="B">B</option>
+                                    <option value="O">O</option>
+                                    <option value="AB">AB</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">อาร์เอชแฟคเตอร์ (Rh Factor)</label>
+                                <select class="form-control" required>
+                                    <option value="">-- ระบุผลการทดสอบ --</option>
+                                    <option value="Positive" selected>Positive (+)</option>
+                                    <option value="Negative">Negative (-)</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <h3 style="color: var(--primary); margin-bottom: 1rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.5rem;">ส่วนที่ 2: ผลการตรวจคัดกรองเชื้อ (Infectious Diseases Results)</h3>
+                        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.5; background: #fff5f5; border: 1px solid #fed7d7; padding: 1rem; border-radius: 8px;">
+                            <i class="fa-solid fa-circle-info" style="color: #c53030; margin-right: 5px;"></i> หากค่าตัวใดตัวหนึ่งตรวจพบผลเป็น <strong>"Reactive (+) - พบเชื้อ"</strong> ทุกถุงเลือดที่แยกออกมาจาก DonationID นี้ จะถูกล็อกสถานะเข้าสู่โหมด <strong>"รอดำเนินการทำลาย (3)"</strong> ทันที และระบบจะทำการออกใบสั่งระงับสิทธิ์การบริจาค (Deferral) ให้กับผู้บริจาคคนนี้
+                        </p>
+                        
+                        <div class="form-grid" style="margin-bottom: 2rem; grid-template-columns: 1fr 1fr;">
+                            <div class="form-group">
+                                <label class="form-label">ไวรัสเอชไอวี HIV (Anti-HIV)</label>
+                                <select class="form-control" required style="border-left: 4px solid #38a169;">
+                                    <option value="Negative" selected>Non-Reactive (-) ปกติ</option>
+                                    <option value="Positive">Reactive (+) พบเชื้อ</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">ไวรัสตับอักเสบบี (HBsAg)</label>
+                                <select class="form-control" required style="border-left: 4px solid #38a169;">
+                                    <option value="Negative" selected>Non-Reactive (-) ปกติ</option>
+                                    <option value="Positive">Reactive (+) พบเชื้อ</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">ไวรัสตับอักเสบซี (Anti-HCV)</label>
+                                <select class="form-control" required style="border-left: 4px solid #38a169;">
+                                    <option value="Negative" selected>Non-Reactive (-) ปกติ</option>
+                                    <option value="Positive">Reactive (+) พบเชื้อ</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">ซิฟิลิส Syphilis (VDRL)</label>
+                                <select class="form-control" required style="border-left: 4px solid #38a169;">
+                                    <option value="Negative" selected>Non-Reactive (-) ปกติ</option>
+                                    <option value="Positive">Reactive (+) พบเชื้อ</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group full-width" style="margin-top: 2rem;">
+                            <button type="submit" class="btn btn-staff" style="width: 100%; max-width: 100%; justify-content: center; padding: 1rem;">
+                                <div class="btn-content" style="flex-direction: row; justify-content: center; gap: 10px;">
+                                    <i class="fa-solid fa-flask" style="font-size: 1.25rem;"></i>
+                                    <span style="font-size: 1.15rem; color: var(--text-main);">บันทึกผล Test ข้อมูลแล็บ</span>
+                                </div>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="../../../js/script.js"></script>
+</body>
+</html>

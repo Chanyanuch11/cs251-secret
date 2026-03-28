@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Blood Bag | Staff Portal</title>
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../css/style.css">
+    <style>
+        .sidebar { border-right: 1px solid var(--primary-glow); }
+        .sidebar-header h2 { color: #2d3748; }
+        .menu-item.active { border-right-color: #4a5568; background: #f7fafc; color: #2d3748; }
+        .menu-item:hover { background: #f7fafc; color: #2d3748; }
+    </style>
+</head>
+<body class="dashboard-body">
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-user-shield" style="color: #4a5568; font-size: 1.5rem; margin-right: 10px;"></i>
+                <h2>Staff Portal</h2>
+                <button class="close-sidebar-btn" id="closeSidebarBtn">&times;</button>
+            </div>
+            <div class="sidebar-menu" style="overflow-y: auto;">
+                <a href="../dashboard/employee-dashboard.html" class="menu-item">
+                    <i class="fa-solid fa-chart-line"></i> Dashboard
+                </a>
+                <a href="../donors/staff-donors.html" class="menu-item">
+                    <i class="fa-solid fa-users"></i> ผู้บริจาค (Donors)
+                </a>
+                <a href="../patients/staff-patients.html" class="menu-item">
+                    <i class="fa-solid fa-procedures"></i> ผู้ป่วย (Patients)
+                </a>
+                <a href="../inventory/staff-inventory.html" class="menu-item active">
+                    <i class="fa-solid fa-boxes-stacked"></i> คลังเลือด (Inventory)
+                </a>
+                <a href="../testing/staff-testing.html" class="menu-item">
+                    <i class="fa-solid fa-microscope"></i> ตรวจเลือด (Testing)
+                </a>
+                <a href="../usage/staff-usage.html" class="menu-item">
+                    <i class="fa-solid fa-truck-medical"></i> การจ่ายเลือด (Usage)
+                </a>
+                <a href="../alerts/staff-alerts.html" class="menu-item">
+                    <i class="fa-solid fa-bell"></i> แจ้งเตือน (Alerts)
+                </a>
+                <a href="../reports/staff-reports.html" class="menu-item">
+                    <i class="fa-solid fa-file-invoice"></i> รายงาน (Reports)
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Wrapper -->
+        <div class="main-wrapper" id="mainContent">
+            <!-- Topbar -->
+            <header class="topbar">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div style="flex: 1;"></div>
+                <div class="user-profile">
+                    <div class="user-info">
+                        <div class="user-name">คุณสิริกร เวชภัณฑ์</div>
+                        <div class="user-id">พยาบาลเจาะเก็บโลหิต (EMP-0152)</div>
+                    </div>
+                    <a href="../../../index.html" class="logout-btn" style="border-color: #e2e8f0; background: #ffffff; color: var(--text-main);">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                    </a>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <main class="dashboard-content">
+                <div style="display: flex; align-items: center; margin-bottom: 2rem;">
+                    <a href="../inventory/staff-inventory.html" style="color: var(--text-muted); font-size: 1.5rem; margin-right: 15px; text-decoration: none; transition: 0.2s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-muted)'"><i class="fa-solid fa-arrow-left"></i></a>
+                    <h1 class="page-title" style="margin-bottom: 0;">ขึ้นทะเบียนรับเข้าถุงเลือด (Add Blood Bag)</h1>
+                </div>
+
+                <div class="stat-card" style="padding: 2.5rem; max-width: 900px;">
+                    <p style="color: var(--text-muted); margin-bottom: 2rem;">เพิ่มข้อมูลถุงเลือดที่ผ่านการเจาะเก็บเข้าสู่สถานะรอการทดสอบ (Testing Phase) หากแยกส่วนประกอบเลือดแล้วให้กรอกข้อมูลแต่ละถุงแยกกันตามส่วนประกอบ</p>
+                    
+                    <form onsubmit="event.preventDefault(); document.getElementById('saveAlert').style.display='block'; window.scrollTo(0,0);">
+                        <div id="saveAlert" class="alert alert-success" style="display: none; border-radius: 8px; margin-bottom: 2rem;">
+                            <i class="fa-solid fa-circle-check"></i> บันทึกข้อมูลถุงเลือดและแยกส่วนประกอบสำเร็จ! รหัสถุง <strong>BAG-W99001</strong> ถูกนำเข้าสู่คลังในสถานะ "รอผลแล็บ"
+                        </div>
+
+                        <h3 style="color: var(--primary); margin-bottom: 1.5rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.5rem;">แหล่งที่มาและการอ้างอิง</h3>
+                        <div class="form-grid" style="margin-bottom: 2rem;">
+                            <div class="form-group full-width" style="margin-bottom: 0;">
+                                <label class="form-label">อ้างอิงรหัสจากประวัติการบริจาค (Donation ID)</label>
+                                <div style="display: flex; gap: 1rem;">
+                                    <input type="text" class="form-control" placeholder="เช่น DONATION-55102 เพื่อผูกกับข้อมูลผู้ทำบริจาค" value="DONATION-88192" required style="flex: 2;">
+                                    <button type="button" class="btn btn-staff" style="min-width: unset; padding: 0.8rem 1.5rem; flex: 1; border-color: #cbd5e0; background: #fdfbf7; color: var(--text-main);"><i class="fa-solid fa-link"></i> ลิงก์ข้อมูล</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="background: #f7fafc; padding: 1.5rem; border-radius: 8px; border: 1px solid #e2e8f0; margin-bottom: 2.5rem; display: flex; flex-wrap: wrap; gap: 2rem;">
+                            <div><p style="margin: 0; color: var(--text-muted); font-size: 0.9rem;">ผู้บริจาค (ดึงข้อมูลอัตโนมัติ)</p><strong style="color: var(--text-main); font-size: 1.1rem;">คุณสมชาย รักดี (DON-99842)</strong></div>
+                            <div><p style="margin: 0; color: var(--text-muted); font-size: 0.9rem;">หมู่เลือดตั้งต้น</p><strong style="color: var(--primary); font-size: 1.1rem;">A+ (รอแล็บยืนยัน)</strong></div>
+                        </div>
+
+                        <h3 style="color: var(--primary); margin-bottom: 1.5rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.5rem;">รายละเอียดถุงเลือดตัวอย่าง</h3>
+                        <div class="form-grid" style="margin-bottom: 2.5rem;">
+                            <div class="form-group">
+                                <label class="form-label">รหัสถุงเลือด (Bag ID) / รหัสสแกนบาร์โค้ด</label>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <input type="text" class="form-control" placeholder="สแกน หรือ ระบบ Auto-Gen" value="BAG-W99001" required style="flex: 1; font-weight: bold; color: #3182ce;">
+                                    <button type="button" class="btn btn-staff" style="min-width: unset; padding: 0.8rem; background: white; border-color: #e2e8f0;"><i class="fa-solid fa-barcode"></i></button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">ประเภทส่วนประกอบ (Component Type)</label>
+                                <select class="form-control" required>
+                                    <option value="" disabled selected>-- เลือกส่วนประกอบแยก --</option>
+                                    <option value="WB">Whole Blood (WB)</option>
+                                    <option value="PRC">Packed Red Cells (PRC)</option>
+                                    <option value="FFP">Fresh Frozen Plasma (FFP)</option>
+                                    <option value="PLT">Platelets (PLT)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">ปริมาตรบรรจุ (Volume - ml)</label>
+                                <input type="number" class="form-control" placeholder="ระบุตัวเลข (เช่น 450)" value="450" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">อุณหภูมิจัดเก็บตั้งต้น (°C)</label>
+                                <input type="number" step="0.1" class="form-control" placeholder="อุณหภูมิตู้แช่" value="4.0" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">วันที่เจาะเก็บ (Collection Date)</label>
+                                <input type="date" class="form-control" required value="2026-03-26">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">วันระบุหมดอายุ (Expiry Date) - <span style="font-size: 0.8rem; color: #3182ce; cursor: pointer;">คำนวณอัตโนมัติ</span></label>
+                                <input type="date" class="form-control" required value="2026-04-30">
+                            </div>
+                        </div>
+
+                        <div class="form-group full-width" style="margin-top: 2rem;">
+                            <button type="submit" class="btn btn-staff" style="width: 100%; max-width: 100%; justify-content: center; padding: 1.25rem;">
+                                <div class="btn-content" style="flex-direction: row; justify-content: center; gap: 10px;">
+                                    <i class="fa-solid fa-floppy-disk" style="font-size: 1.25rem;"></i>
+                                    <span style="font-size: 1.15rem;">บันทึกขึ้นทะเบียนถุงเลือด</span>
+                                </div>
+                            </button>
+                            <div style="text-align: center; margin-top: 1rem;">
+                                <a href="../inventory/staff-inventory.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.95rem;">ยกเลิกการบันทึก (Cancel)</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="../../../js/script.js"></script>
+</body>
+</html>

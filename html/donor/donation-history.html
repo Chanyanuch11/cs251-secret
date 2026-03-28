@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation History | Blood Bank</title>
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body class="dashboard-body">
+
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-droplet" style="color: var(--primary); font-size: 1.5rem; margin-right: 10px;"></i>
+                <h2>BloodBank</h2>
+                <button class="close-sidebar-btn" id="closeSidebarBtn">&times;</button>
+            </div>
+            <div class="sidebar-menu">
+                <a href="donor-dashboard.html" class="menu-item">
+                    <i class="fa-solid fa-border-all"></i> Dashboard
+                </a>
+                <a href="donation-history.html" class="menu-item active">
+                    <i class="fa-solid fa-clock-rotate-left"></i> ประวัติการบริจาค
+                </a>
+                <a href="donor-profile.html" class="menu-item">
+                    <i class="fa-solid fa-user"></i> ข้อมูลส่วนตัว
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Wrapper -->
+        <div class="main-wrapper" id="mainContent">
+            <!-- Topbar -->
+            <header class="topbar">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div style="flex: 1;"></div>
+                <div class="user-profile">
+                    <div class="user-info">
+                        <div class="user-name">คุณเจตนิพัทธ์ ผู้บริจาค</div>
+                        <div class="user-id">DON-12345</div>
+                    </div>
+                    <a href="../../index.html" class="logout-btn">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                    </a>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <main class="dashboard-content">
+                <h1 class="page-title">ประวัติการบริจาคโลหิต</h1>
+
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>วันที่บริจาค</th>
+                                <th>หน่วยรับบริจาค</th>
+                                <th>ประเภทการบริจาค</th>
+                                <th>ปริมาณ (cc)</th>
+                                <th>ผลคัดกรองเบื้องต้น</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>12 มิ.ย. 2025</td>
+                                <td>ห้องเจาะเลือด (ชั้น 3)</td>
+                                <td>โลหิตรวม (Whole Blood)</td>
+                                <td>450</td>
+                                <td><span class="badge badge-success">ผ่าน</span></td>
+                            </tr>
+                            <tr>
+                                <td>10 ก.พ. 2025</td>
+                                <td>รถหน่วยรับบริจาคเคลื่อนที่ (ศูนย์การค้า)</td>
+                                <td>โลหิตรวม (Whole Blood)</td>
+                                <td>450</td>
+                                <td><span class="badge badge-success">ผ่าน</span></td>
+                            </tr>
+                            <tr>
+                                <td>5 พ.ย. 2024</td>
+                                <td>ห้องเจาะเลือด (ชั้น 3)</td>
+                                <td>เกล็ดเลือด (Platelets)</td>
+                                <td>-</td>
+                                <td><span class="badge badge-danger">ไม่ผ่าน (พักผ่อนไม่พอ)</span></td>
+                            </tr>
+                            <tr>
+                                <td>12 ก.ค. 2024</td>
+                                <td>ห้องเจาะเลือด (ชั้น 3)</td>
+                                <td>โลหิตรวม (Whole Blood)</td>
+                                <td>450</td>
+                                <td><span class="badge badge-success">ผ่าน</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="stat-card" style="text-align: center; padding: 3rem;">
+                    <i class="fa-solid fa-award" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                    <h3 style="margin-bottom: 0.5rem; color: var(--text-main);">ยอดบริจาคสะสม: 3 ครั้ง</h3>
+                    <p style="color: var(--text-muted);">"ขอบคุณที่ร่วมเป็นส่วนหนึ่งในการต่อชีวิตเพื่อนมนุษย์"</p>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="../../js/script.js"></script>
+</body>
+</html>
